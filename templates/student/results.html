@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Quiz Results{% endblock %}
+
+{% block content %}
+<div class="results-container">
+    <h2>Quiz Results: {{ result.Title }}</h2>
+    
+    <div class="result-summary">
+        <div class="result-card {{ 'passed' if result.Score >= result.Passing_Score else 'failed' }}">
+            <h3>Your Score</h3>
+            <div class="score-display">{{ result.Score }}%</div>
+            <p>Passing Score: {{ result.Passing_Score }}%</p>
+            <p>Status: {{ 'Passed' if result.Score >= result.Passing_Score else 'Failed' }}</p>
+            <p>Time Taken: {{ result.Time_Taken }} seconds</p>
+            <p>Date Taken: {{ result.Date_Taken.strftime('%Y-%m-%d %H:%M') }}</p>
+        </div>
+    </div>
+    
+    <div class="correct-answers">
+        <h3>Correct Answers</h3>
+        {% for answer in correct_answers %}
+            <div class="answer-card">
+                <h4>Question {{ loop.index }}</h4>
+                <p>{{ answer.QuestionText }}</p>
+                <p class="correct-answer">Correct Answer: {{ answer.CorrectAnswer }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    
+    <a href="{{ url_for('student_dashboard') }}" class="btn">Back to Dashboard</a>
+</div>
+{% endblock %}

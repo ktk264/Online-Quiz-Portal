@@ -1,0 +1,249 @@
+/* Quiz specific styles */
+.quiz-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.quiz-description {
+    margin-bottom: 20px;
+    color: var(--text-light);
+}
+
+.quiz-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.time-remaining {
+    font-weight: bold;
+    color: var(--danger-color);
+    background-color: rgba(231, 76, 60, 0.1);
+    padding: 5px 10px;
+    border-radius: var(--border-radius);
+}
+
+.question-card {
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: var(--border-radius);
+}
+
+.question-text {
+    margin: 10px 0;
+    font-weight: 500;
+}
+
+.choices {
+    margin-top: 10px;
+}
+
+.choice {
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+}
+
+.choice input[type="radio"] {
+    margin-right: 10px;
+}
+
+.choice label {
+    cursor: pointer;
+}
+
+.submit-btn {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 30px;
+}
+
+/* Results styles */
+.results-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.result-summary {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.result-card {
+    padding: 20px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    width: 300px;
+    box-shadow: var(--box-shadow);
+}
+
+.result-card.passed {
+    border: 2px solid var(--success-color);
+}
+
+.result-card.failed {
+    border: 2px solid var(--danger-color);
+}
+
+.score-display {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.result-card.passed .score-display {
+    color: var(--success-color);
+}
+
+.result-card.failed .score-display {
+    color: var(--danger-color);
+}
+
+.correct-answers {
+    margin-top: 30px;
+}
+
+.answer-card {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: var(--border-radius);
+}
+
+.correct-answer {
+    font-weight: bold;
+    color: var(--success-color);
+    margin-top: 5px;
+}
+
+/* Create quiz styles */
+.create-quiz-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.question-container {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: var(--border-radius);
+    position: relative;
+}
+
+.remove-question {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--danger-color);
+    color: white;
+    border: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.choice-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.choice-container input[type="text"] {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.remove-choice {
+    background-color: var(--danger-color);
+    color: white;
+    border: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-choice {
+    margin-top: 5px;
+}
+
+/* Report styles */
+.report-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.report-summary {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.summary-card {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: var(--border-radius);
+}
+
+.charts-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.chart-card {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: var(--border-radius);
+}
+
+.chart-card canvas {
+    width: 100% !important;
+    height: 300px !important;
+}
+
+.time-remaining-container {
+    position: fixed;
+    top: 125px;
+    right: 25px;
+    z-index: 100;
+    background: white;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#time-remaining {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.blinking {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}

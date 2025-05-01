@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}{{ quiz.Title }}{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/quiz.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="quiz-container">
+    <h2>{{ quiz.Title }}</h2>
+    <p class="quiz-description">{{ quiz.Description }}</p>
+
+    <div class="time-remaining-container">
+        <div id="time-remaining" class="blinking">
+            Time Remaining: <span id="time-display">00:00:00</span>
+        </div>
+    </div>
+    
+    <form id="quiz-form" method="POST">
+        <input type="hidden" name="start_time" value="{{ start_time }}">
+        
+        {% for question in questions %}
+            <div class="question-card" id="q{{ question.QuestionID }}">
+                <h3>Question {{ loop.index }}</h3>
+                <p class="question-text">{{ question.Text }}</p>
+                <p class="question-text">{{ question.Figure }}</p>
+                
+                {% if question.Type == 'multiple' %}
+                    <div class="choices">
+                        {% for choice in question.choices %}
+                            <div class="choice">
+                                <input type="radio" 
+                                       id="q{{ question.QuestionID }}_c{{ choice.ChoiceID }}" 
+                                       name="{{ question.QuestionID }}" 
+                                       value="{{ choice.ChoiceID }}" 
+                                       required>
+                                <label for="q{{ question.QuestionID }}_c{{ choice.ChoiceID }}">{{ choice.Text }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="choice">
+                        <textarea name="{{ question.QuestionID }}" required></textarea>
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        
+        <button type="submit" class="btn submit-btn">Submit Quiz</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/quiz.js') }}"></script>
+<script>
+    // Calculate end time in milliseconds
+    const endTime = new Date("{{ quiz.end_time.strftime('%Y-%m-%d %H:%M:%S') }}").getTime();
+    
+    // Initialize timer
+    startTimer(endTime, function() {
+        // Auto-submit when time is up
+        document.getElementById('quiz-form').submit();
+    });
+</script>
+{% endblock %}

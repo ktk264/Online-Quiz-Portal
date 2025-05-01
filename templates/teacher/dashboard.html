@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Teacher Dashboard{% endblock %}
+
+{% block content %}
+<h2>Teacher Dashboard</h2>
+
+<div class="teacher-actions">
+    <a href="{{ url_for('create_quiz') }}" class="btn">Create New Quiz</a>
+</div>
+
+<section class="dashboard-section">
+    <h3>Your Quizzes</h3>
+    {% if quizzes %}
+        <table class="quizzes-table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Created</th>
+                    <th>Attempts</th>
+                    <th>Avg Score</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for quiz in quizzes %}
+                    <tr>
+                        <td>{{ quiz.Title }}</td>
+                        <td>{{ quiz.CategoryName }}</td>
+                        <td>{{ quiz.Created_Date.strftime('%Y-%m-%d') }}</td>
+                        <td>{{ quiz.Attempts }}</td>
+                        <td>{{ '%.1f'|format(quiz.AvgScore|float) if quiz.AvgScore else 'N/A' }}%</td>
+                        <td>
+                            <a href="{{ url_for('quiz_report', quiz_id=quiz.QuizID) }}" class="btn small">View Report</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>You haven't created any quizzes yet.</p>
+    {% endif %}
+</section>
+{% endblock %}
